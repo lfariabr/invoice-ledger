@@ -38,5 +38,9 @@ def load_ledger(file_path):
         # Convert Amount columns to numeric
         if 'Amount inc GST' in data.columns:
             data['Amount inc GST'] = pd.to_numeric(data['Amount inc GST'], errors='coerce')
+        
+        # Standardize contractor names - apply title case for consistency
+        if 'Contractor' in data.columns:
+            data['Contractor'] = data['Contractor'].str.title()
     
     return df
