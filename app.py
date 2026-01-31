@@ -18,6 +18,15 @@ def main():
     uploaded_file = st.file_uploader("Upload Ledger Excel File", type=["xlsx"])
     if uploaded_file is None:
         st.info("Please upload an Excel file to proceed.")
+        
+        # Provide sample file download
+        with open("data/invoiceLedger.xlsx", "rb") as sample_file:
+            st.download_button(
+                label="📥 Download Sample Ledger File",
+                data=sample_file,
+                file_name="sample_invoice_ledger.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
         st.stop()
     
     # Load data
@@ -66,7 +75,6 @@ def main():
     
     # Analytics
     show_analytics(df)
-
 
 if __name__ == "__main__":
     main()
